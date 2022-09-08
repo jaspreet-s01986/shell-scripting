@@ -9,10 +9,11 @@ echo "Function fa completed"
 
 echo "Calling function"
 fa
-sleep 5
+sleep 2
 fa
 
 echo $(uptime)
 echo $(uptime | awk -F : '{print $1}') #prints 1st value
 echo $(uptime | awk -F : '{print $4}') #prints 5th value
 echo $(uptime | awk -F : '{print $NF}') #prints last value
+echo $(uptime | awk -F : '{print $NF}' | awk -F , '{print $1}') #prints first value from last column
