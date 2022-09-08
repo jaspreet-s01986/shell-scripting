@@ -6,4 +6,5 @@ echo ${a}
 echo "${a}"
 echo '${a}'
 echo "$?"
+echo "hello"
 echo '$?'
