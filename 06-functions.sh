@@ -28,3 +28,6 @@ stat ()
 
 echo "Calling stat function"
 stat
+
+source common.sh
+common_fun
