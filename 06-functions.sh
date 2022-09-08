@@ -29,5 +29,5 @@ stat ()
 echo "Calling stat function"
 stat
 
-source common.sh
+source ./common.sh #This will call/pull all the functions/variables from external file to be used in this present file
 common_fun
