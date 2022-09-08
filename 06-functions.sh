@@ -9,5 +9,5 @@ echo "Function fa completed"
 
 echo "Calling function"
 fa
-sleep
+sleep 5
 fa
