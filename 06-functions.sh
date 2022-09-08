@@ -2,7 +2,7 @@
 
 fa()
 {
-echo "Today is $(date +%F +%T)"
+echo "Today is $(date +%F%T)"
 echo "No of open sessions are $(who | wc -l)"
 echo "Function fa completed"
 }
