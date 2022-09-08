@@ -13,6 +13,6 @@ sleep 5
 fa
 
 echo $(uptime)
-echo $(uptime | awk -F : $1) #prints 1st value
-echo $(uptime | awk -F : $5) #prints 5th value
-echo $(uptime | awk -F : $NF) #prints last value
+echo $(uptime | awk -F : '{print $1}) #prints 1st value
+echo $(uptime | awk -F : '{print $5}) #prints 5th value
+echo $(uptime | awk -F : '{print $NF}) #prints last value
