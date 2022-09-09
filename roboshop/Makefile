@@ -1,8 +1,8 @@
 frontend:
-	sh componets/frontend.sh
+	sh components/frontend.sh
 cart:
-	sh componets/cart.sh
+	sh components/cart.sh
 mongodb:
-	sh componets/mongodb.sh
+	sh components/mongodb.sh
 catalogue:
-	sh componets/catalogue.sh
+	sh components/catalogue.sh
