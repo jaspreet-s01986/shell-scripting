@@ -1,5 +1,5 @@
 #!/bin/bash
 
-<<Comment
+<<Commenting
 echo "mutli line comment"
-Comment
+Commenting
