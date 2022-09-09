@@ -3,7 +3,7 @@ set -e # makes script to exist if any command fails rather than moving to next s
 
 USER_ID=$(id -u)
 
-source ./common.sh
+source components/common.sh
 
 yum install nginx -y
 systemctl enable nginx
