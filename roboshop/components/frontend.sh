@@ -1,5 +1,6 @@
 #!/bin/bash
-yum install nginx -y
+set -e # makes script to exist if any command fails rather than moving to next step
+yum install nginxdfafa -y
 systemctl enable nginx
 systemctl start nginx
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
