@@ -8,13 +8,13 @@ NODEJS_CODE="https://github.com/stans-robot-project/catalogue/archive/main.zip"
 source components/common.sh
 
 echo -n "Downloading $COMPONENT code: "
-curl -sL $NODEJS_REPO | bash
+curl -sL $NODEJS_REPO | bash &> $LOGFILE
 status $?
 echo -n "Installing NodeJS: "
-yum install nodejs -y
+yum install nodejs -y &>> $LOGFILE
 status $?
 echo -n "Creating roboshop user: "
-useradd roboshop
+useradd roboshop &>> $LOGFILE
 status $?
 # echo -n "Downloading NodeJS code: "
 # curl -s -L -o /tmp/catalogue.zip $NODEJS_CODE
