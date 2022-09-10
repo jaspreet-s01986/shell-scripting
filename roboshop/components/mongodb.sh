@@ -31,7 +31,7 @@ status $?
 cd /tmp
 
 echo -n "Extracting the schema: "
-unzip mongodb.zip &>> $LOGFILE
+unzip -o mongodb.zip &>> $LOGFILE
 status $?
 cd mongodb-main
 echo -n "Injecting the schema: "
