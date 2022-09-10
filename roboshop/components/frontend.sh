@@ -19,7 +19,7 @@ yum install nginx -y &>> $LOGFILE
 status $?
 
 systemctl enable nginx &>> $LOGFILE
-echo -n "Installing Nginx: "
+echo -n "Starting Nginx: "
 systemctl start nginx &>> $LOGFILE
 
 status $?
@@ -28,7 +28,7 @@ echo -n "Downloading and extracting $COMPONENT: "
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
 cd /usr/share/nginx/html
 rm -rf *
-unzip /tmp/frontend.zip
+unzip /tmp/frontend.zip &>> $LOGFILE
 
 status $?
 
