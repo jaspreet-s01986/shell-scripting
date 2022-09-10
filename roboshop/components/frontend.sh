@@ -1,11 +1,20 @@
 #!/bin/bash
 set -e # makes script to exist if any command fails rather than moving to next step
 
-USER_ID=$(id -u)
+COMPONENT=frontend
+LOGFILE="/tmp/$COMPONENT.log"
 
 source components/common.sh
 
-yum install nginx -y
+echo -n "Installing Nginx: "
+yum install nginx -y &>> $LOGFILE
+
+if [ $? eq 0 ]; then
+    echo -e "\e[31mSUCCESS\e[0m"
+else
+    echo -e "\e[31mFAILED\e[0m"
+fi
+
 systemctl enable nginx
 systemctl start nginx
 curl -s -L -o /tmp/frontend.zip "https://github.com/stans-robot-project/frontend/archive/main.zip"
