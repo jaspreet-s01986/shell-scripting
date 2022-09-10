@@ -35,7 +35,7 @@ unzip mongodb.zip &>> $LOGFILE
 status $?
 cd mongodb-main
 echo -n "Injecting the schema: "
-mongo < catalogue.js
-mongo < users.js
+mongo < catalogue.js &>> $LOGFILE
+mongo < users.js &>> $LOGFILE
 status $?
 echo -e "\e[32m -------- $COMPONENT Configured Successfully --------\e[0m"
