@@ -9,7 +9,7 @@ source components/common.sh
 
 
 echo -n "Installing Nginx: "
-yum install nginx -y &>> $LOGFILE
+yum install nginx -y &> $LOGFILE
 status $?
 
 systemctl enable nginx &>> $LOGFILE
