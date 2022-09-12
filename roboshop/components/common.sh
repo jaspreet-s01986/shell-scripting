@@ -68,7 +68,7 @@ config_service () {
 
 enable_start_service () {
     echo -n "Enabling & Starting $COMPONENT Service: "
-    systemctl enable catalogue  &>> $LOGFILE
-    systemctl start catalogue
+    systemctl enable $COMPONENT  &>> $LOGFILE
+    systemctl start $COMPONENT
     status $?
 }
