@@ -22,12 +22,12 @@ curl -s -L -o /tmp/$COMPONENT.zip $NODEJS_CODE
 status $?
 echo -n "Extracting NodeJS code: "
 cd /home/roboshop
-unzip -o /tmp/$COMPONENT.zip
+unzip -o /tmp/$COMPONENT.zip &>> $LOGFILE
 status $?
 mv catalogue-main $COMPONENT
 cd /home/roboshop/$COMPONENT
 echo -n "Installing NPM : "
-npm install
+npm install &>> $LOGFILE
 status $?
 # vim systemd.servce
 # mv /home/roboshop/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
