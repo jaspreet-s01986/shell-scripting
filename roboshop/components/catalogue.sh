@@ -5,7 +5,7 @@ COMPONENT=catalogue
 LOGFILE="/tmp/$COMPONENT.log"
 NODEJS_REPO="https://rpm.nodesource.com/setup_lts.x"
 NODEJS_CODE="https://github.com/stans-robot-project/catalogue/archive/main.zip"
-$APPUSER=roboshop
+APPUSER=roboshop
 source components/common.sh
 
 echo -n "Downloading NodeJS code: "
