@@ -36,12 +36,12 @@ npm install &>> $LOGFILE
 status $?
 
 echo -n "Configuring $COMPONENT Service: "
-sed -i -e 's/MONOGo_DNSNAME/mongodb.adjclasses.int/' systemd.service
+sed -i -e 's/MONGO_DNSNAME/mongodb.adjclasses.int/' systemd.service
 mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
 systemctl daemon-reload
 
-echo -n "Starting $COMPONENT Service: "
-systemctl enable catalogue
+echo -n "Enabling & Starting $COMPONENT Service: "
+systemctl enable catalogue  &>> $LOGFILE
 systemctl start catalogue
 status $?
 
