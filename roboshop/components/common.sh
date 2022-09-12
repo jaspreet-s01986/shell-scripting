@@ -22,11 +22,53 @@ nodejs () {
     echo -n "Installing NodeJS: "
     yum install nodejs -y &>> $LOGFILE
     status $?
+    #Calling create_user function
     create_user
+    #Calling download_extract function
+    download_extract
+    echo -n "Installing NPM : "
+    npm install &>> $LOGFILE
+    status $?
+    #Calling config_service function
+    config_service
+    #Calling enable & start service function
+    enable_start_service
 }
 
 create_user () {
     echo -n "Creating roboshop user: "
     id $APPUSER &>> $LOGFILE || useradd $APPUSER &>> $LOGFILE
+    status $?
+}
+
+download_extract () {
+    echo -n "Downloading $COMPONENT Repo: "
+    curl -s -L -o /tmp/$COMPONENT.zip $NODEJS_CODE
+    status $?
+
+    echo -n "Cleaning up: "
+    cd /home/$APPUSER && rm -rf $COMPONENT &>> $LOGFILE
+    status $?
+
+    echo -n "Extracting NodeJS code: "
+    cd /home/$APPUSER
+    unzip -o /tmp/$COMPONENT.zip &>> $LOGFILE
+    status $?
+    mv $COMPONENT-main $COMPONENT && chown -R $APPUSER:$APPUSER $COMPONENT
+    cd $COMPONENT
+}
+
+config_service () {
+    echo -n "Configuring $COMPONENT Service: "
+    sed -i -e 's/MONGO_DNSNAME/mongodb.adjclasses.int/' systemd.service
+    mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
+    systemctl daemon-reload
+    status $?
+}
+
+enable_start_service () {
+    echo -n "Enabling & Starting $COMPONENT Service: "
+    systemctl enable catalogue  &>> $LOGFILE
+    systemctl start catalogue
     status $?
 }
