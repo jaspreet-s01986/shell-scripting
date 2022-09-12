@@ -5,7 +5,6 @@ COMPONENT=catalogue
 LOGFILE="/tmp/$COMPONENT.log"
 NODEJS_REPO="https://rpm.nodesource.com/setup_lts.x"
 NODEJS_CODE="https://github.com/stans-robot-project/catalogue/archive/main.zip"
-APPUSER=roboshop
 source components/common.sh
 
 echo -n "Downloading NodeJS code: "
@@ -35,10 +34,15 @@ cd $COMPONENT
 echo -n "Installing NPM : "
 npm install &>> $LOGFILE
 status $?
-# vim systemd.servce
-# mv /home/roboshop/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
-# systemctl daemon-reload
-# systemctl start catalogue
-# systemctl enable catalogue
-# systemctl status catalogue -l
+
+echo -n "Configuring $COMPONENT Service: "
+sed -i -e 's/MONOGo_DNSNAME/mongodb.adjclasses.int' systemd.servce
+/home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
+systemctl daemon-reload
+
+echo -n "Starting $COMPONENT Service: "
+systemctl enable catalogue
+systemctl start catalogue
+status $?
+
 

@@ -1,4 +1,5 @@
 #!/bin/bash
+APPUSER=roboshop
 USER_ID=$(id -u)
 if [ "$USER_ID" -ne 0 ]; then
     echo -e "\e[31mYOu need to run the script as root user\e[0m"
