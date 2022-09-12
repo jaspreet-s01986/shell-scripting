@@ -5,6 +5,7 @@ COMPONENT=catalogue
 LOGFILE="/tmp/$COMPONENT.log"
 NODEJS_REPO="https://rpm.nodesource.com/setup_lts.x"
 NODEJS_CODE="https://github.com/stans-robot-project/catalogue/archive/main.zip"
+$APPUSER=roboshop
 source components/common.sh
 
 echo -n "Downloading NodeJS code: "
@@ -14,18 +15,23 @@ echo -n "Installing NodeJS: "
 yum install nodejs -y &>> $LOGFILE
 status $?
 echo -n "Creating roboshop user: "
-id roboshop &>> $LOGFILE || useradd roboshop &>> $LOGFILE
+id $APPUSER &>> $LOGFILE || useradd $APPUSER &>> $LOGFILE
 status $?
 
 echo -n "Downloading $COMPONENT Repo: "
 curl -s -L -o /tmp/$COMPONENT.zip $NODEJS_CODE
 status $?
+
+echo -n "Cleaning up: "
+cd /home/$APPUSER && rm -rf $COMPONENT &>> $LOGFILE
+status $?
+
 echo -n "Extracting NodeJS code: "
-cd /home/roboshop
+cd /home/$APPUSER
 unzip -o /tmp/$COMPONENT.zip &>> $LOGFILE
 status $?
-mv catalogue-main $COMPONENT
-cd /home/roboshop/$COMPONENT
+mv $COMPONENT-main $COMPONENT && chown -R $APPUSER:$APPUSER $COMPONENT
+cd $COMPONENT
 echo -n "Installing NPM : "
 npm install &>> $LOGFILE
 status $?
