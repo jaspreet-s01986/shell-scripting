@@ -37,7 +37,7 @@ status $?
 
 echo -n "Configuring $COMPONENT Service: "
 sed -i -e 's/MONOGo_DNSNAME/mongodb.adjclasses.int/' systemd.service
-/home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
+mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
 systemctl daemon-reload
 
 echo -n "Starting $COMPONENT Service: "
