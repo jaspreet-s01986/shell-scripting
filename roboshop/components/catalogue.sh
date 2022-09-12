@@ -14,7 +14,7 @@ echo -n "Installing NodeJS: "
 yum install nodejs -y &>> $LOGFILE
 status $?
 echo -n "Creating roboshop user: "
-id roboshot  || useradd roboshop
+id roboshop  || useradd roboshop
 status $?
 
 echo -n "Downloading $COMPONENT Repo: "
