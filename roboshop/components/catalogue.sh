@@ -7,9 +7,8 @@ LOGFILE="/tmp/$COMPONENT.log"
 NODEJS_CODE="https://github.com/stans-robot-project/catalogue/archive/main.zip"
 source components/common.sh
 
-echo -n "Creating roboshop user: "
-id $APPUSER &>> $LOGFILE || useradd $APPUSER &>> $LOGFILE
-status $?
+#Calling nodejs function
+nodejs
 
 echo -n "Downloading $COMPONENT Repo: "
 curl -s -L -o /tmp/$COMPONENT.zip $NODEJS_CODE
@@ -33,6 +32,7 @@ echo -n "Configuring $COMPONENT Service: "
 sed -i -e 's/MONGO_DNSNAME/mongodb.adjclasses.int/' systemd.service
 mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
 systemctl daemon-reload
+status $?
 
 echo -n "Enabling & Starting $COMPONENT Service: "
 systemctl enable catalogue  &>> $LOGFILE
