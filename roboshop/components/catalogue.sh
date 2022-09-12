@@ -3,16 +3,10 @@ set -e # makes script to exist if any command fails rather than moving to next s
 
 COMPONENT=catalogue
 LOGFILE="/tmp/$COMPONENT.log"
-NODEJS_REPO="https://rpm.nodesource.com/setup_lts.x"
+
 NODEJS_CODE="https://github.com/stans-robot-project/catalogue/archive/main.zip"
 source components/common.sh
 
-echo -n "Downloading NodeJS code: "
-curl -sL $NODEJS_REPO | bash &> $LOGFILE
-status $?
-echo -n "Installing NodeJS: "
-yum install nodejs -y &>> $LOGFILE
-status $?
 echo -n "Creating roboshop user: "
 id $APPUSER &>> $LOGFILE || useradd $APPUSER &>> $LOGFILE
 status $?
