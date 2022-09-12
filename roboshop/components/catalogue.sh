@@ -36,8 +36,7 @@ npm install &>> $LOGFILE
 status $?
 
 echo -n "Configuring $COMPONENT Service: "
-pwd
-sed -i -e 's/MONOGo_DNSNAME/mongodb.adjclasses.int/' systemd.servce
+sed -i -e 's/MONOGo_DNSNAME/mongodb.adjclasses.int/' systemd.service
 /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
 systemctl daemon-reload
 
