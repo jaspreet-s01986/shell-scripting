@@ -29,10 +29,7 @@ nodejs () {
     echo -n "Installing NPM : "
     npm install &>> $LOGFILE
     status $?
-    #Calling config_service function
-    config_service
-    #Calling enable & start service function
-    enable_start_service
+
 }
 
 create_user () {
@@ -58,14 +55,21 @@ download_extract () {
     cd $COMPONENT
 }
 
-config_service () {
+config_service_catalogue () {
     echo -n "Configuring $COMPONENT Service: "
-    sed -i -e 's/MONGO_DNSNAME/172.31.85.115/' systemd.service
+    sed -i -e 's/MONGO_DNSNAME/mongodb.adjclasses.int/' systemd.service
     mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
     systemctl daemon-reload
     status $?
 }
 
+config_service_user () {
+    echo -n "Configuring $COMPONENT Service: "
+    sed -i -e 's/REDIS_ENDPOINT/redis.adjclasses.int/' -e 's/MONGO_ENDPOINT/mongodb.adjclasses.int/' systemd.service
+    mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
+    systemctl daemon-reload
+    status $?
+}
 enable_start_service () {
     echo -n "Enabling & Starting $COMPONENT Service: "
     systemctl enable $COMPONENT  &>> $LOGFILE
