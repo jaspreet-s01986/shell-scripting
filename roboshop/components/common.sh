@@ -1,7 +1,7 @@
 #!/bin/bash
 APPUSER=roboshop
 NODEJS_REPO="https://rpm.nodesource.com/setup_lts.x"
-NODEJS_CODE="https://github.com/stans-robot-project/catalogue/archive/main.zip"
+NODEJS_CODE="https://github.com/stans-robot-project/$COMPONENT/archive/main.zip"
 USER_ID=$(id -u)
 if [ "$USER_ID" -ne 0 ]; then
     echo -e "\e[31mYOu need to run the script as root user\e[0m"
