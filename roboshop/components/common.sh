@@ -1,6 +1,7 @@
 #!/bin/bash
 APPUSER=roboshop
 NODEJS_REPO="https://rpm.nodesource.com/setup_lts.x"
+NODEJS_CODE="https://github.com/stans-robot-project/catalogue/archive/main.zip"
 USER_ID=$(id -u)
 if [ "$USER_ID" -ne 0 ]; then
     echo -e "\e[31mYOu need to run the script as root user\e[0m"
@@ -29,6 +30,10 @@ nodejs () {
     echo -n "Installing NPM : "
     npm install &>> $LOGFILE
     status $?
+    #Calling config_service function
+    config_service
+    #Calling enable & start service function
+    enable_start_service
 
 }
 
@@ -55,17 +60,9 @@ download_extract () {
     cd $COMPONENT
 }
 
-config_service_catalogue () {
+config_service () {
     echo -n "Configuring $COMPONENT Service: "
-    sed -i -e 's/MONGO_DNSNAME/mongodb.adjclasses.int/' systemd.service
-    mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
-    systemctl daemon-reload
-    status $?
-}
-
-config_service_user () {
-    echo -n "Configuring $COMPONENT Service: "
-    sed -i -e 's/REDIS_ENDPOINT/redis.adjclasses.int/' -e 's/MONGO_ENDPOINT/mongodb.adjclasses.int/' systemd.service
+    sed -i -e 's/MONGO_DNSNAME/mongodb.adjclasses.int/' -e 's/REDIS_ENDPOINT/redis.adjclasses.int/' -e 's/MONGO_ENDPOINT/mongodb.adjclasses.int/' systemd.service
     mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
     systemctl daemon-reload
     status $?
