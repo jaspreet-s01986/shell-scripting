@@ -12,7 +12,7 @@ nodejs
 
 
 
-
+echo -e "\e[32m -------- $COMPONENT Configured Successfully --------\e[0m"
 
 
 

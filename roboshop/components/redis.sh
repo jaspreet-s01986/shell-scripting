@@ -21,3 +21,4 @@ status $?
 
 #Calling Enable & Start Service function
 enable_start_service
+echo -e "\e[32m -------- $COMPONENT Configured Successfully --------\e[0m"
