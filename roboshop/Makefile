@@ -6,3 +6,5 @@ mongodb:
 	sh components/mongodb.sh
 catalogue:
 	sh components/catalogue.sh
+redis:
+	sh	components/redis.sh
