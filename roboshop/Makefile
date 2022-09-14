@@ -1,7 +1,5 @@
 frontend:
 	sh components/frontend.sh
-cart:
-	sh components/cart.sh
 mongodb:
 	sh components/mongodb.sh
 catalogue:
