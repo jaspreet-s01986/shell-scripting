@@ -10,13 +10,13 @@ echo -n "Configuring $COMPNENT Repo: "
 curl -L https://raw.githubusercontent.com/stans-robot-project/redis/main/redis.repo -o /etc/yum.repos.d/redis.repo  &> $LOGFILE
 status $?
 
-echo -n "Installing $COMPNENT: "
+echo -n "Installing $COMPONENT: "
 yum install redis-6.2.7 -y  &> $LOGFILE
 status $?
 #2. Update the BindIP from `127.0.0.1` to `0.0.0.0` in config file `/etc/redis.conf` & `/etc/redis/redis.conf`
-echo -n "Configuring $COMPNENT's config files: "
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/$COMPNENT.conf
-sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/$COMPNENT/$COMPNENT.conf
+echo -n "Configuring $COMPONENT's config files: "
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/$COMPONENT.conf
+sed -i -e 's/127.0.0.1/0.0.0.0/' /etc/$COMPONENT/$COMPONENT.conf
 status $?
 
 #Calling Enable & Start Service function
