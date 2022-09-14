@@ -30,9 +30,9 @@ nodejs () {
     npm install &>> $LOGFILE
     status $?
     #Calling config_service function
-    config_service
+    #config_service
     #Calling enable & start service function
-    enable_start_service
+    #enable_start_service
 }
 
 create_user () {
