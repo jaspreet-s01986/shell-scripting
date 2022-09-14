@@ -30,9 +30,9 @@ nodejs () {
     npm install &>> $LOGFILE
     status $?
     #Calling config_service function
-    #config_service
+    config_service
     #Calling enable & start service function
-    #enable_start_service
+    enable_start_service
 }
 
 create_user () {
@@ -61,6 +61,7 @@ download_extract () {
 config_service () {
     echo -n "Configuring $COMPONENT Service: "
     sed -i -e 's/MONGO_DNSNAME/172.31.85.115/' systemd.service
+    ls -ltr /home/$APPUSER/$COMPONENT/systemd.service
     mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
     systemctl daemon-reload
     status $?
