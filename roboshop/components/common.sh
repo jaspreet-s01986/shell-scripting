@@ -60,7 +60,7 @@ download_extract () {
 
 config_service () {
     echo -n "Configuring $COMPONENT Service: "
-    sed -i -e 's/MONGO_DNSNAME/mongodb.adjclasses.int/' systemd.service
+    sed -i -e 's/MONGO_DNSNAME/172.31.85.115/' systemd.service
     mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
     systemctl daemon-reload
     status $?
