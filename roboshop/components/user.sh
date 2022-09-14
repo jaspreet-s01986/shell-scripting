@@ -4,7 +4,7 @@ set -e # makes script to exist if any command fails rather than moving to next s
 COMPONENT=catalogue
 LOGFILE="/tmp/$COMPONENT.log"
 source components/common.sh
-
+NODEJS_CODE="https://github.com/stans-robot-project/catalogue/archive/main.zip"
 nodejs
 
 #Calling config_service function
