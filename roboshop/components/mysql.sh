@@ -1,5 +1,5 @@
 #!/bin/bash
-set -e # makes script to exist if any command fails rather than moving to next step
+#set -e not required in this script
 
 COMPONENT=mysql
 LOGFILE="/tmp/$COMPONENT.log"
@@ -31,7 +31,7 @@ fi
 
 
 #Uninstall validate password plugin
-echo "show plugins" | mysql -uroot -pRoboShop@1 &>> $LOGFILE | grep validate_password
+echo "show plugins" | mysql -uroot -pRoboShop@1 &>> $LOGFILE | grep validate_password &>> $LOGFILE
 if [ $? -eq 0 ]; then
     echo -n "Unistalling $COMPONENR validate password plugin: "
     echo "uninstall plugin validate_password;" > /tmp/uninstall_pw_validate.sql
