@@ -86,7 +86,7 @@ maven () {
     mvn clean package
     status $?
     echo -n "Moving $COMPONENT jar file"
-    mv target/$COMPNENT-1.0.jar $COMPNENT.jar
+    mv target/$COMPONENT-1.0.jar $COMPONENT.jar
     status $?
     #Calling config_service function
     config_service
