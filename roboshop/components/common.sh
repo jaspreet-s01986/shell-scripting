@@ -52,7 +52,7 @@ download_extract () {
     cd /home/$APPUSER && rm -rf $COMPONENT &>> $LOGFILE
     status $?
 
-    echo -n "Extracting NodeJS code: "
+    echo -n "Extracting package/code: "
     cd /home/$APPUSER
     unzip -o /tmp/$COMPONENT.zip &>> $LOGFILE
     status $?
@@ -82,11 +82,11 @@ maven () {
     create_user
     #Calling function to download & extract the content
     download_extract
-    echo -n "Maven Clean Package: "
-    mvn clean package
+    echo -n "Creating Artifact: Maven Clean Package: "
+    mvn clean package  $>> $LOGFILE
     status $?
     echo -n "Moving $COMPONENT jar file"
-    mv target/shipping-1.0.jar shipping.jar
+    mv target/$COMPNENT-1.0.jar $COMPNENT.jar
     status $?
     #Calling config_service function
     config_service
