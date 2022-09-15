@@ -83,7 +83,7 @@ maven () {
     #Calling function to download & extract the content
     download_extract
     echo -n "Creating Artifact: Maven Clean Package: "
-    echo -n "$(pwd)"
+    echo -n "$(pwd) $(id)"
     mvn clean package  $>> $LOGFILE
     status $?
     echo -n "Moving $COMPONENT jar file"
