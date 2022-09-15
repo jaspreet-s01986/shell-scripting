@@ -10,11 +10,11 @@ echo -n "Configuring the $COMPONENT Repo: "
 curl -s -L -o /etc/yum.repos.d/mysql.repo $SQL_REPO_URL
 status $?
 
-echo -n "Installing $COMPONENT: "
+echo -n "Installing $COMPONENT Community Edition: "
 yum install mysql-community-server -y
 status $?
 
-echo -n "Enabling & Starting $COMPONENT"
+echo -n "Enabling & Starting $COMPONENT: "
 systemctl enable mysqld 
 systemctl start mysqld
 status $?
