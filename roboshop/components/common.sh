@@ -62,7 +62,7 @@ download_extract () {
 
 config_service () {
     echo -n "Configuring $COMPONENT Service: "
-    sed -i -e 's/CATALOGUE_ENDPOINT/catalogue.adjclasses.int/' -e 's/REDIS_ENDPOINT/redis.adjclasses.int/' -e 's/MONGO_DNSNAME/mongodb.adjclasses.int/' -e 's/REDIS_ENDPOINT/redis.adjclasses.int/' -e 's/MONGO_ENDPOINT/mongodb.adjclasses.int/' systemd.service
+    sed -i -e 's/DBHOST/mysql.adjclasses.int/' -e 's/CARTENDPOINT/cart.adjclasses.int/' -e 's/CATALOGUE_ENDPOINT/catalogue.adjclasses.int/' -e 's/REDIS_ENDPOINT/redis.adjclasses.int/' -e 's/MONGO_DNSNAME/mongodb.adjclasses.int/' -e 's/REDIS_ENDPOINT/redis.adjclasses.int/' -e 's/MONGO_ENDPOINT/mongodb.adjclasses.int/' systemd.service
     mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
     systemctl daemon-reload
     status $?
@@ -72,4 +72,24 @@ enable_start_service () {
     systemctl enable $COMPONENT  &>> $LOGFILE
     systemctl start $COMPONENT
     status $?
+}
+
+maven () {
+    echo -n "Installing Maven: "
+    yum install maven -y $> $LOGFILE
+    status $?
+    #Calling function to create user
+    create_user
+    #Calling function to download & extract the content
+    download_extract
+    echo -n "Maven Clean Package: "
+    mvn clean package
+    status $?
+    echo -n "Moving $COMPONENT jar file"
+    mv target/shipping-1.0.jar shipping.jar
+    status $?
+    #Calling config_service function
+    config_service
+    #Calling enable & start service function
+    enable_start_service
 }
