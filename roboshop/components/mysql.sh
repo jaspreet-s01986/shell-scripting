@@ -19,9 +19,12 @@ systemctl enable mysqld
 systemctl start mysqld
 status $?
 
-echo -n "Changing Default Root Password: "
+echo -n "Changing Default $COMPONENR Root Password: "
 DEF_ROOT_PASSWD=$(grep "temporary password" /var/log/mysqld.log | awk '{print $NF}')
-echo $DEF_ROOT_PASSWD
+echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('RoboShop@1');" > /tmp/rootpassword_change.sql
+cat /tmp/rootpassword_change.sql
+mysql --connect-expired-password -uroot -p"$DEF_ROOT_PASSWD" < /tmp/rootpassword_change.sql
+status $?
 # grep temp /var/log/mysqld.log
 #( Copy that password )
 
