@@ -31,11 +31,11 @@ fi
 
 
 #Uninstall validate password plugin
-echo "show plugins" | mysql -uroot -pRoboShop@1 &>> $LOGFILE | grep validate_password &>> $LOGFILE
+echo "show plugins" | mysql -uroot -pRoboShop@1 2>> $LOGFILE | grep validate_password &>> $LOGFILE
 if [ $? -eq 0 ]; then
     echo -n "Unistalling $COMPONENR validate password plugin: "
     echo "uninstall plugin validate_password;" > /tmp/uninstall_pw_validate.sql
-    mysql --connect-expired-password -uroot -pRoboShop@1 < /tmp/rootuninstall_pw_validate.sql
+    mysql --connect-expired-password -uroot -pRoboShop@1 < /tmp/uninstall_pw_validate.sql
     status $?
 fi
 # grep temp /var/log/mysqld.log
