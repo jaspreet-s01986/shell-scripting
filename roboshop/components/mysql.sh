@@ -11,7 +11,7 @@ curl -s -L -o /etc/yum.repos.d/mysql.repo $SQL_REPO_URL
 status $?
 
 echo -n "Installing $COMPONENT Community Edition: "
-yum install mysql-community-server -y
+yum install mysql-community-server -y &> $LOGFILE
 status $?
 
 echo -n "Enabling & Starting $COMPONENT: "
