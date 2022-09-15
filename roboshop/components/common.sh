@@ -62,7 +62,7 @@ download_extract () {
 
 config_service () {
     echo -n "Configuring $COMPONENT Service: "
-    sed -i -e 's/MONGO_DNSNAME/mongodb.adjclasses.int/' -e 's/REDIS_ENDPOINT/redis.adjclasses.int/' -e 's/MONGO_ENDPOINT/mongodb.adjclasses.int/' systemd.service
+    sed -i -e 's/CATALOGUE_ENDPOINT/catalogue.adjclasses.int/' -e 's/REDIS_ENDPOINT/redis.adjclasses.int/' -e 's/MONGO_DNSNAME/mongodb.adjclasses.int/' -e 's/REDIS_ENDPOINT/redis.adjclasses.int/' -e 's/MONGO_ENDPOINT/mongodb.adjclasses.int/' systemd.service
     mv /home/$APPUSER/$COMPONENT/systemd.service /etc/systemd/system/$COMPONENT.service
     systemctl daemon-reload
     status $?
