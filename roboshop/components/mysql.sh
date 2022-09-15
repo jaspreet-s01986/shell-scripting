@@ -4,6 +4,7 @@
 COMPONENT=mysql
 LOGFILE="/tmp/$COMPONENT.log"
 SQL_REPO_URL="https://raw.githubusercontent.com/stans-robot-project/mysql/main/mysql.repo"
+SCHEMA_URL="https://github.com/stans-robot-project/mysql/archive/main.zip"
 source components/common.sh
 
 echo -n "Configuring the $COMPONENT Repo: "
@@ -38,19 +39,18 @@ if [ $? -eq 0 ]; then
     mysql -uroot -pRoboShop@1 < /tmp/uninstall_pw_validate.sql
     status $?
 fi
-# grep temp /var/log/mysqld.log
-#( Copy that password )
 
-# mysql_secure_installation
-
-# mysql -uroot -pRoboShop@1
-#> uninstall plugin validate_password;
-
-# curl -s -L -o /tmp/mysql.zip "https://github.com/stans-robot-project/mysql/archive/main.zip"
-# cd /tmp
-# unzip mysql.zip
-# cd mysql-main
-# mysql -u root -pRoboShop@1 <shipping.sql
+echo -n "Downloading $COMPONENT Schema: "
+curl -s -L -o /tmp/mysql.zip $SCHEMA_URL
+status $?
+echo -n "Extracting $COMPONET Schema: "
+cd /tmp
+unzip -o mysql.zip &>> $LOGFILE
+status $?
+echo -n "Injecting $COMPONENT Schema: "
+cd mysql-main
+mysql -u root -pRoboShop@1 <shipping.sql
+status $?
 
 
 echo -e "\e[32m -------- $COMPONENT Configured Successfully --------\e[0m"
