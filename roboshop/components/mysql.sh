@@ -22,7 +22,6 @@ status $?
 echo -n "Changing Default $COMPONENR Root Password: "
 DEF_ROOT_PASSWD=$(grep "temporary password" /var/log/mysqld.log | awk '{print $NF}')
 echo "SET PASSWORD FOR 'root'@'localhost' = PASSWORD('RoboShop@1');" > /tmp/rootpassword_change.sql
-cat /tmp/rootpassword_change.sql
 mysql --connect-expired-password -uroot -p"$DEF_ROOT_PASSWD" < /tmp/rootpassword_change.sql
 status $?
 # grep temp /var/log/mysqld.log
