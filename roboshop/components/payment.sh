@@ -27,7 +27,7 @@ download_extract
 
 echo -n "Installing Dependencies: "
 cd /home/roboshop/payment 
-pip3 install -r requirements.txt
+pip3 install -r requirements.txt &>> $LOGFILE
 status $?
 
 echo -e "\e[32m -------- $COMPONENT Configured Successfully --------\e[0m"
