@@ -5,7 +5,7 @@ COMPONENT=rabbitmq
 LOGFILE="/tmp/$COMPONENT.log"
 source components/common.sh
 rpm -ql erlang-23.2.6-1.el7.x86_64 &> $LOGFILE
-if [ $? -ne 0] {
+if [ $? -ne 0]; {
     echo -n "Installing $COMPONENT Dependency Package Erlang: "
     yum install https://github.com/rabbitmq/erlang-rpm/releases/download/v23.2.6/erlang-23.2.6-1.el7.x86_64.rpm -y
     status $?
