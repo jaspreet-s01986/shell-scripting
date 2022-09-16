@@ -22,7 +22,7 @@ status $?
 echo -n "Updating the App Config $COMPONENT: "
 USER_ID=$(id -u roboshop)
 GROUP_ID=$(id -g roboshop)
-sed -i -e "/uid/ c uid = $USER_ID" "/gid/ c gid = $GROUP_ID" 
+sed -i -e "/uid/ c uid = $USER_ID" -e "/gid/ c gid = $GROUP_ID" payment.ini
 status $?
 
 
