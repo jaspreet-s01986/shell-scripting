@@ -23,14 +23,15 @@ systemctl enable rabbitmq-server
 systemctl start rabbitmq-server
 status $?
 
-rabbitmqctl list_users | grep roboshop &>> $LOGFILE
+rabbitmqctl list_users | grep $APPUSER  &>> $LOGFILE
 if [ $? -ne 0 ]; then
     echo -n "Creating $APPUSER user for $COMPONENT: "
     rabbitmqctl add_user $APPUSER roboshop123 &>> $LOGFILE
     status $?
 fi
+
+echo -n "Configuring $APPUSER permissions for $COMPONENT: "
 rabbitmqctl set_user_tags $APPUSER administrator &>> $LOGFILE
-status $?
 rabbitmqctl set_permissions -p / $APPUSER ".*" ".*" ".*" &>> $LOGFILE
 status $?
 
