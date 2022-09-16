@@ -24,9 +24,11 @@ systemctl start rabbitmq-server
 status $?
 
 echo -n "Creating $APPUSER user for $COMPONENT: "
-rabbitmqctl add_user $APPUSER roboshop123
-rabbitmqctl set_user_tags $APPUSER administrator
-rabbitmqctl set_permissions -p / $APPUSER ".*" ".*" ".*"
+rabbitmqctl add_user $APPUSER roboshop123 &>> $LOGFILE
+status $?
+rabbitmqctl set_user_tags $APPUSER administrator &>> $LOGFILE
+status $?
+rabbitmqctl set_permissions -p / $APPUSER ".*" ".*" ".*" &>> $LOGFILE
 status $?
 
 echo -e "\e[32m -------- $COMPONENT Configured Successfully --------\e[0m"
