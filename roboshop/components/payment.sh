@@ -16,7 +16,7 @@ cd /home/roboshop
 curl -L -s -o /tmp/payment.zip "https://github.com/stans-robot-project/payment/archive/main.zip"
 status $?
 echo -n "Extracting $COMPONET Package: "
-unzip -o /tmp/payment.zip
+unzip -o /tmp/payment.zip &>> $LOGFILE
 mv payment-main payment
 status
 
