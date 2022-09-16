@@ -20,8 +20,9 @@ unzip -o /tmp/payment.zip &>> $LOGFILE
 mv payment-main payment
 status
 
-# cd /home/roboshop/payment 
-# pip3 install -r requirements.txt
-
+echo -n "Installing Dependencies: "
+cd /home/roboshop/payment 
+pip3 install -r requirements.txt
+status $?
 
 echo -e "\e[32m -------- $COMPONENT Configured Successfully --------\e[0m"
