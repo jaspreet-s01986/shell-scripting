@@ -39,7 +39,7 @@ mv localhost.conf /etc/nginx/default.d/roboshop.conf
 status $?
 
 echo -n "Configuring the proxy file: "
-sed -i -e "/catalogue/s/localhost/catalogue.adjclasses.int/" -e "/user/s/localhost/user.adjclasses.int/" -e "/cart/s/localhost/cart.adjclasses.int/" -e "/shipping/s/localhost/shipping.adjclasses.int/" /etc/nginx/default.d/roboshop.conf
+sed -i -e "/catalogue/s/localhost/catalogue.adjclasses.int/" -e "/user/s/localhost/user.adjclasses.int/" -e "/cart/s/localhost/cart.adjclasses.int/" -e "/shipping/s/localhost/shipping.adjclasses.int/" -e "/payment/s/localhost/payment.adjclasses.int/" /etc/nginx/default.d/roboshop.conf
 status $?
 
 echo -n "Restarting Nginx: "
