@@ -26,12 +26,12 @@ status $?
 rabbitmqctl list_users | grep roboshop &>> $LOGFILE
 if [ $? -ne 0 ]; then
     echo -n "Creating $APPUSER user for $COMPONENT: "
-    rabbitmqctl add_user $APPUSER roboshop123 #&>> $LOGFILE
+    rabbitmqctl add_user $APPUSER roboshop123 &>> $LOGFILE
     status $?
 fi
-rabbitmqctl set_user_tags $APPUSER administrator #&>> $LOGFILE
+rabbitmqctl set_user_tags $APPUSER administrator &>> $LOGFILE
 status $?
-rabbitmqctl set_permissions -p / $APPUSER ".*" ".*" ".*" #&>> $LOGFILE
+rabbitmqctl set_permissions -p / $APPUSER ".*" ".*" ".*" &>> $LOGFILE
 status $?
 
 echo -e "\e[32m -------- $COMPONENT Configured Successfully --------\e[0m"
