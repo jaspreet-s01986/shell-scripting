@@ -84,7 +84,6 @@ maven () {
     download_extract
     echo -n "Creating Artifact: Maven Clean Package: "
     mvn clean package &>> $LOGFILE
-    echo -en "\e[32m Status is::: $? \e[0m"
     status $?
     echo -n "Moving $COMPONENT jar file"
     mv target/$COMPONENT-1.0.jar $COMPONENT.jar

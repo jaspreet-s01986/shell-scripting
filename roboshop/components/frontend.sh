@@ -36,7 +36,14 @@ mv frontend-main/* .
 mv static/* .
 rm -rf frontend-main README.md
 mv localhost.conf /etc/nginx/default.d/roboshop.conf
+status $?
 
+echo -n "Configuring the proxy file: "
+sed -i -e "/catalogue/s/localhost/catalogue" -e "/user/s/localhost/user" -e "/cart/s/localhost/cart" -e "/shipping/s/localhost/shipping" /etc/nginx/default.d/roboshop.conf
+status $?
+
+echo -n "Restarting Nginx: "
+systemctl restart nginx &>> $LOGFILE
 status $?
 
 echo -e "\e[32m -------- $COMPONENT Configured Successfully --------\e[0m"
