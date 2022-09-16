@@ -27,4 +27,5 @@ status $?
 
 config_service
 
+enable_start_service
 echo -e "\e[32m -------- $COMPONENT Configured Successfully --------\e[0m"
