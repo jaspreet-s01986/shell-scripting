@@ -15,7 +15,7 @@ curl -s https://packagecloud.io/install/repositories/rabbitmq/rabbitmq-server/sc
 status $?
 
 echo -n "Installing $COMPONENT: "
-yum install rabbitmq-server -y
+yum install rabbitmq-server -y &>> $LOGFILE
 status $?
 
 echo -n "Starting and Enabling $COMPONENT Service: "
@@ -23,8 +23,10 @@ systemctl enable rabbitmq-server
 systemctl start rabbitmq-server
 status $?
 
-# rabbitmqctl add_user roboshop roboshop123
-# rabbitmqctl set_user_tags roboshop administrator
-# rabbitmqctl set_permissions -p / roboshop ".*" ".*" ".*"
+echo -n "Creating $APPUSER user for $COMPONENT: "
+rabbitmqctl add_user $APPUSER roboshop123
+rabbitmqctl set_user_tags $APPUSER administrator
+rabbitmqctl set_permissions -p / $APPUSER ".*" ".*" ".*"
+status $?
 
 echo -e "\e[32m -------- $COMPONENT Configured Successfully --------\e[0m"
