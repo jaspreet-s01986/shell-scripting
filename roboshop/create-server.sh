@@ -2,6 +2,10 @@
 AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7" | jq '.Images[].ImageId' | sed -e 's/"//g')
 COMPONENT=$1
 
+if [ $1 = "" ]; then
+    echo -e "\e31mValid options are component name or all\e[0m"
+    exit 1
+fi
 create_server () {
     echo -ne "\e[35m$COMPONENT\e[0m Server Creation in Progress:\n"
     #Creating instance & getting private IP in variable
@@ -12,7 +16,7 @@ create_server () {
 }
 
 if [ "$1" == "all" ]; then
-    for component in frontend123 mongodb123 catalogue123 redis123 user123 cart123 mysql123 shipping123 rabbitmq123 payment123; do
+    for component in frontend mongodb catalogue redis user cart mysql shipping rabbitmq payment; do
         COMPONENT=$component
         create_server
     done
