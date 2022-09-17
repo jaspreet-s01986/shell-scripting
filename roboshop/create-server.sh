@@ -2,7 +2,7 @@
 AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-CentOS7" | jq '.Images[].ImageId' | sed -e 's/"//g')
 COMPONENT=$1
 
-if [ $1 = "" ]; then
+if [ "$1" = "" ]; then
     echo -e "\e31mValid options are component name or all\e[0m"
     exit 1
 fi
