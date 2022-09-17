@@ -3,7 +3,7 @@ AMI_ID=$(aws ec2 describe-images --filters "Name=name,Values=DevOps-LabImage-Cen
 COMPONENT=$1
 
 if [ "$1" = "" ]; then
-    echo -e "\e31mValid options are component name or all\e[0m"
+    echo -e "\e[31mValid options are component name or all\e[0m"
     exit 1
 fi
 create_server () {
