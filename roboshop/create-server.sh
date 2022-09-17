@@ -13,7 +13,7 @@ create_server () {
         sed -e "s/IPADDR/${PRIVATE_IP}/" -e "s/COMPONENT/$COMPONENT/" route53.json > /tmp/route53-record.json
     echo -ne "Creating Route53 A Record for \e[35m$COMPONENT\e[0m:\n"
     aws route53 change-resource-record-sets --hosted-zone-id Z08995942J9ZKS0XPUWM5 --change-batch file:///tmp/route53-record.json | jq
-    echo -ne "\e[35m$COMPONENT\e[0m Server Created & corresponding Route53 Record Updated\n"
+    echo -ne "\e[35m$COMPONENT\e[0m Server Created & corresponding Route53 Record Updated.\n"
 }
 
 if [ "$1" == "all" ]; then
