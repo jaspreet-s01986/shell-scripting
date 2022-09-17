@@ -3,9 +3,9 @@
     "Changes": [{
     "Action": "UPSERT",
                 "ResourceRecordSet": {
-                    "Name": "COMPONENT.adjclasses.int",
-                    "Type": "A",
-                    "TTL": 60,
-                    "ResourceRecords": [{ "Value": "IPADDR"}]
+                "Name": "COMPONENT.adjclasses.int",
+                "Type": "A",
+                "TTL": 60,
+                "ResourceRecords": [{ "Value": "IPADDR"}]
     }}]
 }
