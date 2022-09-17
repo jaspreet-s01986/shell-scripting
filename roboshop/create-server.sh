@@ -7,4 +7,5 @@ PRIVATE_IP=$(aws ec2 run-instances --image-id $AMI_ID --instance-type t2.micro -
 
 sed -i -e 's/IPADDR/$PRIVATE_IP/' -e 's/COMPONENT/$COMPONENT/' route53.json
 
+echo -n "Reading route53.json file"
 cat route53.json
