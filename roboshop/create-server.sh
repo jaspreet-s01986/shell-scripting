@@ -11,7 +11,7 @@ create_server () {
     aws route53 change-resource-record-sets --hosted-zone-id Z08995942J9ZKS0XPUWM5 --change-batch file:///tmp/route53-record.json | jq
 }
 
-if [ "$?" == "all|ALL|All" ]; then
+if [ "$?" == "all" ]; then
     for component in frontend123 mongodb123 catalogue123 redis123 user123 cart123 mysql123 shipping123 rabbitmq123 payment123; do
         COMPONENT=$component
         create_server
