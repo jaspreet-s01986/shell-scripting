@@ -10,8 +10,8 @@ echo -n -e "Private IP: $PRIVATE_IP\n"
 
 sed -e "s/IPADDR/${PRIVATE_IP}/" -e "s/COMPONENT/$COMPONENT/" route53.json > /tmp/route53-record.json
 
-echo "Reading route53.json file"
-cat route53.json
+#echo "Reading route53.json file"
+#cat route53.json
 
 echo "Reading /tmp/route53-record.json file"
 cat /tmp/route53-record.json
